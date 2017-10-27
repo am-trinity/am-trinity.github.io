@@ -1,2 +1,3 @@
 # am-trinity.github.io
-Public HTML
+(Sample Windows blue screen of death (BSOD) layout)[/bsod]
+

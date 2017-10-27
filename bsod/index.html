@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body onselect="return false;" onkeydown="handleKeyDown(event);">
+    <div class="windows" onclick="handleKeyDown(event);" onselect="return false;">
+        <div class="title">
+            <span>Windows</span>
+        </div>
+        <div class="text">
+            <div>A fatal exception
+                <span id="code1"></span> has occured at
+                <span id="code2"></span>. The current application will be terminated.
+            </div>
+            <ul>
+                <li>
+                    <span>Press any key to terminate the current application.</span>
+                </li>
+                <li>
+                    <span>Press CTRL+ALT+DEL again to restart your computer. You will lose any unsaved information in all applications.</span>
+                </li>
+            </ul>
+            <div style="text-align: center;">
+                Press any key to continue
+                <span id="dash">_</span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
