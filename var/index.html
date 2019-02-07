@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+      body { padding: 0; margin: 0; transition: background-color 0.5s; }
+      body::after { position: fixed; top: 0; left: 0; bottom: 0; right: 0; }
+      body.dark::after { content: ''; background: #000; opacity: 0.3; }
+      body.light::after { content: ''; background: #fff; opacity: 0.3; }
+    </style>
+  </head>
+  <body class="light">
+    <script>
+      const queue = [];
+      const flashBody = (x, y) => {
+        document.body.style.backgroundColor = '#' + (x + y).toString(16);
+        if (queue.length > 10) {
+          window.navigator.vibrate(queue);
+          queue = [];
+        } else {
+          queue.push((x+y)%1000);
+        }
+      };
+      document.body.addEventListener('touchmove', (e) => flashBody(e.targetTouches[0].pageX, e.targetTouches[0].pageY));
+      document.body.addEventListener('mousemove', (e) => flashBody(e.pageX, e.pageY));
+
+      if ('ondevicelight' in window) {
+        window.addEventListener('devicelight', function(event) {
+          if (event.value < 50) {
+            document.body.classList.add('dark');
+            document.body.classList.remove('bright');
+          } else {
+            document.body.classList.add('bright');
+            document.body.classList.remove('dark');
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
