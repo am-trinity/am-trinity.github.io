@@ -10,8 +10,9 @@
   </head>
   <body class="light">
     <script>
-      var oscillator = audioCtx.createOscillator();
-      var gainNode = audioCtx.createGain();
+      const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
 
       oscillator.connect(gainNode);
       gainNode.connect(audioCtx.destination);
