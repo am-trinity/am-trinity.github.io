@@ -27,7 +27,7 @@
         oscillator.start();
       }
 
-      const queue = 0;
+      let queue = 0;
       const flashBody = (x, y) => {
         if (!audioCtx) {
           startSound();
@@ -35,7 +35,7 @@
         document.body.style.backgroundColor = '#' + x.toString(16);
         oscillator.frequency = 100 + x % 5000;
         if (++queue > 1000) {
-          window.navigator.vibrate(queue);
+          window.navigator.vibrate(100 + x % 800);
           queue = 0;
         }
       };
