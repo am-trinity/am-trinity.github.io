@@ -10,14 +10,25 @@
   </head>
   <body class="light">
     <script>
-      const queue = [];
+      var oscillator = audioCtx.createOscillator();
+      var gainNode = audioCtx.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      gainNode.gain.value = 0.5;
+      oscillator.frequency.value = 100;
+      oscillator.type = 'sine';
+
+      oscillator.start();
+
+      const queue = 0;
       const flashBody = (x, y) => {
-        document.body.style.backgroundColor = '#' + (x + y).toString(16);
-        if (queue.length > 10) {
+        document.body.style.backgroundColor = '#' + x.toString(16);
+        oscillator.frequency = 100 + x % 5000;
+        if (++queue > 1000) {
           window.navigator.vibrate(queue);
-          queue = [];
-        } else {
-          queue.push((x+y)%1000);
+          queue = 0;
         }
       };
       document.body.addEventListener('touchmove', (e) => flashBody(e.targetTouches[0].pageX, e.targetTouches[0].pageY));
